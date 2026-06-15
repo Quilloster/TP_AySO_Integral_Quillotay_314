@@ -1,0 +1,49 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure("2") do |config|
+
+  config.vm.define "VM1-Quillotay_314" do |vm1|
+    vm1.vm.box = "ubuntu/jammy64"
+    vm1.vm.hostname = "VM1-Quillotay_314"
+    vm1.vm.network "private_network", ip: "192.168.56.10"
+    vm1.ssh.insert_key = true
+    vm1.vm.disk :disk, size: "5GB", name: "vm1_disk1"
+    vm1.vm.disk :disk, size: "3GB", name: "vm1_disk2"
+    vm1.vm.disk :disk, size: "2GB", name: "vm1_disk3"
+    vm1.vm.disk :disk, size: "1GB", name: "vm1_extra"
+    vm1.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+      vb.name = "VM1-Quillotay_314"
+      vb.cpus = 1
+      vb.linked_clone = true
+      vb.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
+    end
+    vm1.vm.provision "shell", inline: <<-SHELL
+      echo "192.168.56.10 VM1-Quillotay_314" >> /etc/hosts
+      echo "192.168.56.11 VM2-Quillotay_314" >> /etc/hosts
+    SHELL
+  end
+
+  config.vm.define "VM2-Quillotay_314" do |vm2|
+    vm2.vm.box = "generic/fedora39"
+    vm2.vm.hostname = "VM2-Quillotay_314"
+    vm2.vm.network "private_network", ip: "192.168.56.11"
+    vm2.ssh.insert_key = true
+    vm2.vm.disk :disk, size: "5GB", name: "vm2_disk1"
+    vm2.vm.disk :disk, size: "3GB", name: "vm2_disk2"
+    vm2.vm.disk :disk, size: "2GB", name: "vm2_disk3"
+    vm2.vm.disk :disk, size: "1GB", name: "vm2_extra"
+    vm2.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+      vb.name = "VM2-Quillotay_314"
+      vb.cpus = 1
+      vb.linked_clone = true
+      vb.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
+    end
+    vm2.vm.provision "shell", inline: <<-SHELL
+      echo "192.168.56.10 VM1-Quillotay_314" >> /etc/hosts
+      echo "192.168.56.11 VM2-Quillotay_314" >> /etc/hosts
+    SHELL
+  end
+
+end
