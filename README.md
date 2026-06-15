@@ -125,4 +125,4 @@
     - Desarrolla Playbook de testing unitarios dentro de los Roles de Ansible.
     - Realizar un Script-Master.sh que ejecute todas las tares.
     - Realizar un check.sh que valide el correcto funcionamiento de todos los desarrollos.
-    
+    Joan Quillotay - Legajo: 120745
