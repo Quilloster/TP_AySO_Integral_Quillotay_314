@@ -1,0 +1,9 @@
+---
+# tasks file for Sudoers_Quillotay
+
+- name: Agregar grupo Quillotay a sudoers sin password
+  lineinfile:
+    path: /etc/sudoers
+    line: "%{{ Nombre_Grupo }} ALL=(ALL) NOPASSWD:ALL"
+    validate: 'visudo -cf %s'
+    state: present

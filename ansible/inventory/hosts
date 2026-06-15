@@ -3,7 +3,7 @@ testing
 produccion
 
 [testing]
-127.0.0.1 
+VM1-Quillotay-314 ansible_host=192.168.56.10 ansible_user=vagrant ansible_ssh_private_key_file=../.vagrant/machines/VM1-Quillotay-314/virtualbox/private_key
 
 [produccion]
-localhost ansible_connection=local 
+VM2-Quillotay-314 ansible_host=192.168.56.11 ansible_user=vagrant ansible_ssh_private_key_file=../.vagrant/machines/VM2-Quillotay-314/virtualbox/private_key

@@ -1,0 +1,26 @@
+---
+# tasks file for Alta_Usuarios_Quillotay
+
+- name: Crear grupos principales
+  group:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - G_R1
+    - G_R2
+    - G_R3
+    - G_R4
+    - G_R5
+    - G_R6
+    - "{{ Nombre_Grupo }}"
+
+- name: Crear usuarios
+  user:
+    name: "R{{ item }}_Quillotay"
+    group: "G_R{{ item }}"
+    groups: "{{ Nombre_Grupo }}"
+    shell: /bin/bash
+    createhome: yes
+    password: "{{ vagrant_password }}"
+    state: present
+  loop: [1, 2, 3, 4, 5, 6]

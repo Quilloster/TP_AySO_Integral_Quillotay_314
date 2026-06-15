@@ -1,4 +1,3 @@
 ---
-# Variables Globales:
-
-Nombre_Grupo: "Nombre-Grupo-Ejemplo"
+Nombre_Grupo: Quillotay
+vagrant_password: "{{ 'vagrant' | password_hash('sha512') }}"
