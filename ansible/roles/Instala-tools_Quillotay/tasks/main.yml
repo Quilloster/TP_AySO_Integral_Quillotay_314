@@ -1,0 +1,21 @@
+---
+# tasks file for Instala-tools_Quillotay
+
+- name: Instalar herramientas en Ubuntu
+  apt:
+    name:
+      - htop
+      - tmux
+      - speedtest-cli
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Instalar herramientas en Fedora
+  dnf:
+    name:
+      - htop
+      - tmux
+      - speedtest-cli
+    state: present
+  when: ansible_os_family == "RedHat"
