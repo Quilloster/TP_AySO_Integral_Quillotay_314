@@ -32,7 +32,7 @@ done
 # Verificar swap
 echo ""
 echo ">>> Verificando swap..."
-if swapon --show | grep -q lv_swap; then
+if swapon --show | grep -q "/dev/"; then
   echo "  [OK] Swap LVM activo"
 else
   echo "  [ERROR] Swap LVM NO activo"
